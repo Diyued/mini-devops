@@ -1,0 +1,10 @@
+# Se copia al servidor en /opt/app. IMAGE lo define el pipeline en el deploy.
+services:
+  app:
+    image: ${IMAGE:-app:local}
+    build: .
+    ports:
+      - "80:8000"
+    environment:
+      APP_VERSION: ${APP_VERSION:-dev}
+    restart: unless-stopped
